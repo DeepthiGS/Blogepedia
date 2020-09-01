@@ -5,7 +5,7 @@ from PIL import Image
 from flask import Flask,render_template,url_for,flash,redirect,request,abort
 from blogepedia import app,bcrypt,db
 from blogepedia.forms import RegistrtionForm,Loginform,UpdateAccountInfo,NewPost
-from blogepedia.model import User,Post 
+from blogepedia.model import Users,Post 
 from flask_login import login_user,login_required,current_user,UserMixin,login_manager,logout_user
 
 
@@ -32,7 +32,7 @@ def register():
 	form = RegistrtionForm()
 	if form.validate_on_submit():
 		hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-		user = User(username = form.username.data , email = form.email.data , password = hashed_password)
+		user = Users(username = form.username.data , email = form.email.data , password = hashed_password)
 		db.session.add(user)
 		db.session.commit()
 		flash(f'Your account has been created. You are now able to login', 'success')
@@ -49,7 +49,7 @@ def login():
 	form = Loginform()
 
 	if form.validate_on_submit():
-		user = User.query.filter_by(email = form.email.data).first()
+		user = Users.query.filter_by(email = form.email.data).first()
 		if user and bcrypt.check_password_hash(user.password,form.password.data):
 			login_user(user,remember=form.remember.data)
 			next_page = request.args.get(url_for('account'))
@@ -187,7 +187,7 @@ def delete_post(post_id):
 @app.route("/user/<string:username>")
 def user_posts(username):
 	page = request.args.get('page',1,type=int)
-	user = User.query.filter_by(username=username).first_or_404()
+	user = Users.query.filter_by(username=username).first_or_404()
 	posts = Post.query.filter_by(author=user).order_by(Post.date_posted.desc()).paginate(per_page=3,page=page)
 	return render_template('user_post.html',title="User.username Posts",posts=posts,user=user)
 
