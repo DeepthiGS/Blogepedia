@@ -16,7 +16,7 @@ local_server = False
 if local_server:
 	app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:12aer56uil90@localhost/blogepedia"
 else:
-	app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://laripkbrqstugo:bf76f095f1e2ce296f38b9843ab0da324fb65aedce72901e791757b90caaf58d@ec2-34-198-103-34.compute-1.amazonaws.com:5432/d9dpulcr6t5qba"
+	app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://myfothmmnpvigm:e4f604fb6e149b5bb5101eb1bfa7df175d6cdbd86e0be7d0c87b94cc13172003@ec2-54-175-77-250.compute-1.amazonaws.com:5432/d8qak2gjv1dqps"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
