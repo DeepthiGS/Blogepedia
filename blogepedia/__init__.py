@@ -12,7 +12,7 @@ app.config['SECRET_KEY'] = '374bef570b27058b66be0365a31a94c3'
 # 	params = json.load(c)["params"]
 
 
-local_server = True
+local_server = False
 if local_server:
 	app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:12aer56uil90@localhost/blogepedia"
 else:
