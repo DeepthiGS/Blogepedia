@@ -37,7 +37,7 @@ class Loginform(FlaskForm):
 class UpdateAccountInfo(FlaskForm):
     username = StringField(label='Username',validators=[DataRequired(),Length(max=20,min=3)],render_kw={"placeholder": "Username"})
     email = StringField(label='Email',validators=[DataRequired(),Email()],render_kw={"placeholder": "Email"})
-    picture = FileField('Update Profile Picture',validators=[FileAllowed(['jpg','png'])])
+    picture = FileField('Update Profile Picture',validators=[FileAllowed(['jpg','png','jpeg'])])
     submit = SubmitField('Save Changes')
 
 
