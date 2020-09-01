@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block body %}
+
+	<!-- Start Banner Area -->
+	<section class="banner-area relative">
+		<div class="container">
+			<div class="row d-flex align-items-center justify-content-center">
+				<div class="about-content col-lg-12">
+					<h1 class="text-white">
+						About Us
+					</h1>
+					<p>Working towards better world</p>
+					<div class="link-nav">
+						<span class="box">
+							<a href="{{url_for('home')}}">Home </a>
+							<i class="lnr lnr-arrow-right"></i>
+							<a href="{{url_for('about')}}">About Us</a>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="rocket-img">
+			<img src="{{url_for('static' , filename='img/rocket.png')}}" alt="">
+		</div>
+	</section>
+	<!-- End Banner Area -->
+
+	<!-- about information -->
+
+
+	{% endblock %}
+
+
