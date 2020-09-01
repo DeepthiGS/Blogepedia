@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField,SubmitField,PasswordField,BooleanField,TextAreaField
 from flask_wtf.file import FileField,FileAllowed
 from wtforms.validators import DataRequired,ValidationError,Length,Email,EqualTo,Regexp,Required
-from blogepedia.model import User,Post
+from blogepedia.model import Users,Post
 from flask_login import current_user 
 
 
@@ -16,12 +16,12 @@ class RegistrtionForm(FlaskForm):
 
     # checking if the user already exists
     def validate_username(self,username):
-       user = User.query.filter_by(username=username.data).first()
+       user = Users.query.filter_by(username=username.data).first()
        if user:
           raise ValidationError('The username is taken.Please choose a different one.')
       
     def validate_username(self,email):
-       email = User.query.filter_by(email=email.data).first()
+       email = Users.query.filter_by(email=email.data).first()
        if email:
           raise ValidationError('The email already exists.Please choose a different one.')
 
@@ -43,14 +43,14 @@ class UpdateAccountInfo(FlaskForm):
 
     def validate_username(self,username):
        if username.data != current_user.username:
-          user = User.query.filter_by(username=username.data).first()
+          user = Users.query.filter_by(username=username.data).first()
           if user:
              raise ValidationError('The username is taken.Please choose a different one.')
       
 
     def validate_email(self,email):
        if email.data != current_user.email:
-          user = User.query.filter_by(email=email.data).first()
+          user = Users.query.filter_by(email=email.data).first()
           if user:
              raise ValidationError('The email already exists.Please choose a different one.')
    
